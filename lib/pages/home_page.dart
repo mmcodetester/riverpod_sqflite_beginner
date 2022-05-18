@@ -62,6 +62,8 @@ class _HomePageState extends ConsumerState<HomePage> {
         }
       });
     }
+    double percentage = finalCompleteALl / totalData.length;
+    String percentageString = '${(percentage * 100).round().toString()} %';
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -145,7 +147,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                          padding: EdgeInsets.fromLTRB(15, 0, 70, 0),
                           child: Column(
                             children: [
                               Text(
@@ -164,6 +166,31 @@ class _HomePageState extends ConsumerState<HomePage> {
                                     fontSize: 16,
                                     color: Colors.white,
                                     letterSpacing: 1),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.zero,
+                            child: CircularProgressIndicator(
+                              value: percentage,
+                              valueColor: AlwaysStoppedAnimation(Colors.amber),
+                              backgroundColor: Colors.pink,
+                            )),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Complete',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                percentageString,
+                                style: TextStyle(color: Colors.white),
                               ),
                             ],
                           ),
