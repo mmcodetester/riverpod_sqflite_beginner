@@ -94,7 +94,14 @@ class _PlanDetailsPageState extends ConsumerState<DailyPlanDetails> {
                     },
                     decoration: InputDecoration(
                       labelText: 'Search',
-                      suffixIcon: Icon(Icons.search),
+                      suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              this._serchVisible = false;
+                              this._isSearch = false;
+                            });
+                          },
+                          icon: Icon(Icons.clear, color: Colors.indigo)),
                     ),
                   ),
                 )
