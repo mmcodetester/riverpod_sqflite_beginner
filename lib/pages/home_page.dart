@@ -62,8 +62,7 @@ class _HomePageState extends ConsumerState<HomePage> {
         }
       });
     }
-    double percentage = finalCompleteALl / totalData.length;
-    String percentageString = '${(percentage * 100).round().toString()} %';
+
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -147,7 +146,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(15, 0, 60, 0),
+                          padding: EdgeInsets.fromLTRB(15, 0, 40, 0),
                           child: Column(
                             children: [
                               Text(
@@ -169,53 +168,6 @@ class _HomePageState extends ConsumerState<HomePage> {
                               ),
                             ],
                           ),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(right: 60, bottom: 0),
-                              child: Text(
-                                'All Plans',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  letterSpacing: 2.0,
-                                  fontSize: 16,
-                                  //fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                Padding(
-                                    padding: EdgeInsets.only(top: 10),
-                                    child: CircularProgressIndicator(
-                                      value: percentage,
-                                      valueColor:
-                                          AlwaysStoppedAnimation(Colors.amber),
-                                      backgroundColor: Colors.pink,
-                                    )),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 10, top: 10),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        'Complete',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      ),
-                                      Text(
-                                        percentageString,
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
                         ),
                       ],
                     )

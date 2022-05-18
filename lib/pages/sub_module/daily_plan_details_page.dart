@@ -10,7 +10,9 @@
 // }
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:open_file/open_file.dart';
 import 'package:provider_app/pages/sub_module/sub_module_edit.dart';
+import 'package:provider_app/utils/pdf_invoice_api.dart';
 
 import '../../providers/daily_plan_sub_module.dart';
 
@@ -62,6 +64,21 @@ class _PlanDetailsPageState extends ConsumerState<DailyPlanDetails> {
             },
             icon: Icon(Icons.arrow_back_ios)),
         actions: [
+          Padding(
+            padding: EdgeInsets.zero,
+            child: IconButton(
+                tooltip: 'Report',
+                onPressed: () async {
+                  final pdfFile = await PDFDocumentApi.generate(list);
+                  //print(pdfFile);
+                  OpenFile.open(pdfFile.path);
+                },
+                icon: Icon(
+                  Icons.picture_as_pdf,
+                  color: Colors.redAccent,
+                  size: 23,
+                )),
+          ),
           Padding(
             padding: EdgeInsets.only(right: 10),
             child: IconButton(
@@ -116,7 +133,7 @@ class _PlanDetailsPageState extends ConsumerState<DailyPlanDetails> {
                             ? Card(
                                 child: ListTile(
                                     leading: IconButton(
-                                        onPressed: () {
+                                        onPressed: () async {
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
