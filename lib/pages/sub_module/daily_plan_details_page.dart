@@ -127,7 +127,7 @@ class _PlanDetailsPageState extends ConsumerState<DailyPlanDetails> {
                                         },
                                         icon: Icon(
                                           Icons.edit_note,
-                                          color: Colors.greenAccent,
+                                          color: Colors.grey,
                                         )),
                                     title: Text(
                                       item.name.toString(),
@@ -293,7 +293,7 @@ class _PlanDetailsPageState extends ConsumerState<DailyPlanDetails> {
                                         },
                                         icon: Icon(
                                           Icons.edit_note,
-                                          color: Colors.greenAccent,
+                                          color: Colors.grey,
                                         )),
                                     title: Text(
                                       item.name.toString(),

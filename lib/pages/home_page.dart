@@ -147,7 +147,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.fromLTRB(15, 0, 70, 0),
+                          padding: EdgeInsets.fromLTRB(15, 0, 60, 0),
                           child: Column(
                             children: [
                               Text(
@@ -170,31 +170,53 @@ class _HomePageState extends ConsumerState<HomePage> {
                             ],
                           ),
                         ),
-                        Padding(
-                            padding: EdgeInsets.zero,
-                            child: CircularProgressIndicator(
-                              value: percentage,
-                              valueColor: AlwaysStoppedAnimation(Colors.amber),
-                              backgroundColor: Colors.pink,
-                            )),
-                        Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: Column(
-                            children: [
-                              Text(
-                                'Complete',
-                                style: TextStyle(color: Colors.white),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(right: 60, bottom: 0),
+                              child: Text(
+                                'All Plans',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  letterSpacing: 2.0,
+                                  fontSize: 16,
+                                  //fontWeight: FontWeight.bold
+                                ),
                               ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Text(
-                                percentageString,
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                        )
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                    padding: EdgeInsets.only(top: 10),
+                                    child: CircularProgressIndicator(
+                                      value: percentage,
+                                      valueColor:
+                                          AlwaysStoppedAnimation(Colors.amber),
+                                      backgroundColor: Colors.pink,
+                                    )),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 10, top: 10),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        'Complete',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+                                      Text(
+                                        percentageString,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ],
                     )
                   ],
