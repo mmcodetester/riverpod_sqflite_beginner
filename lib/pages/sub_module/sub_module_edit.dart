@@ -111,7 +111,7 @@ class SubModuleEdit extends ConsumerWidget {
                                               vertical: 30, horizontal: 10),
                                           child: const Text(
                                             //'Please rate with star',
-                                            'Save Success Plan',
+                                            'Save Success',
                                             style: TextStyle(
                                               color: Colors.amber,
                                               fontSize: 20,
