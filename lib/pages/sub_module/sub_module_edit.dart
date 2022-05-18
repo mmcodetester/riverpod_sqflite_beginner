@@ -95,6 +95,64 @@ class SubModuleEdit extends ConsumerWidget {
                               ref
                                   .watch(dailyPlanSubModuleProvider.notifier)
                                   .update(data);
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    backgroundColor: Colors.white,
+                                    shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(6.0))),
+                                    content: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 30, horizontal: 10),
+                                          child: const Text(
+                                            //'Please rate with star',
+                                            'Save Success Plan',
+                                            style: TextStyle(
+                                              color: Colors.amber,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                        Center(
+                                          child: Image.asset(
+                                            'images/true.png',
+                                            width: 50,
+                                            height: 50,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Container(
+                                            color: Colors.green,
+                                            alignment: Alignment.center,
+                                            height: 40,
+                                            //color: primaryColor,
+                                            child: const Text(
+                                              "OK",
+                                              style: TextStyle(fontSize: 15),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+
+                                //print('After dialog');
+                                //Navigator.pop(context);
+                              );
                             },
                             child: Text("Save "))
                       ],
