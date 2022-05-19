@@ -1,6 +1,5 @@
 import 'dart:io';
-
-import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 //import 'package:pdf/widgets.dart';
@@ -13,16 +12,18 @@ import 'pdf_api.dart';
 class PDFDocumentApi {
   static Future<File> generate(List<DailyPlanSubModule> module) async {
     final pdf = pw.Document();
-
+    final font = await rootBundle.load("font/pyidaungsu_regular.ttf");
+    final ttf = pw.Font.ttf(font);
     pdf.addPage(pw.MultiPage(
       pageFormat: PdfPageFormat.a4,
       build: (context) => [
-        buildHeader(),
+        buildHeader(ttf),
         Divider(),
         buildTitle(),
-        buildInvoice(module),
-
-        // buildTotal(invoice),
+        buildNoteTable(module, ttf),
+        Divider(),
+        buildTotal(module.length),
+        Divider(),
       ],
       // footer: (context) => buildFooter(invoice),
     ));
@@ -30,13 +31,14 @@ class PDFDocumentApi {
     return PdfApi.saveDocument(name: 'all_report.pdf', pdf: pdf);
   }
 
-  static pw.Widget buildHeader() {
+  static pw.Widget buildHeader(Font ttf) {
     String today = DateFormat('yyyy-MM-dd').format(DateTime.now());
     return pw.Column(children: [
       //SizedBox(height: 1 * PdfPageFormat.cm),
       pw.Row(mainAxisAlignment: pw.MainAxisAlignment.end, children: [
         pw.Text("Date - ${today}",
-            style: pw.TextStyle(fontSize: 14, fontBold: pw.Font.timesItalic()))
+            style: pw.TextStyle(
+                font: ttf, fontSize: 14, fontBold: pw.Font.courier()))
       ])
     ]);
   }
@@ -53,7 +55,7 @@ class PDFDocumentApi {
           pw.SizedBox(height: 0.8 * PdfPageFormat.cm),
         ],
       );
-  static pw.Widget buildInvoice(List<DailyPlanSubModule> module) {
+  static pw.Widget buildNoteTable(List<DailyPlanSubModule> module, Font ttf) {
     final headers = [
       'Name',
       'Date',
@@ -75,9 +77,10 @@ class PDFDocumentApi {
 
     return pw.Table.fromTextArray(
       headers: headers,
+      cellStyle: pw.TextStyle(font: ttf),
       data: data,
       border: null,
-      headerStyle: pw.TextStyle(fontWeight: FontWeight.bold),
+      headerStyle: pw.TextStyle(fontWeight: FontWeight.bold, font: ttf),
       headerDecoration: pw.BoxDecoration(color: PdfColors.grey300),
       cellHeight: 30,
       cellAlignments: {
@@ -88,4 +91,12 @@ class PDFDocumentApi {
       },
     );
   }
+
+  static pw.Widget buildTotal(int count) =>
+      pw.Row(mainAxisAlignment: pw.MainAxisAlignment.spaceBetween, children: [
+        pw.Text("Total Plans"),
+        pw.SizedBox(width: 0.1 * PdfPageFormat.inch),
+        pw.Text(count.toString()),
+        pw.SizedBox(width: 0.1 * PdfPageFormat.inch)
+      ]);
 }

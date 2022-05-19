@@ -35,7 +35,7 @@ Future<void> main() async {
       frequency: Duration(hours: 4), inputData: data);
   runApp(ProviderScope(
       child: MaterialApp(
-    theme: ThemeData.light(),
+    theme: ThemeData(fontFamily: 'Pyidaunsu', backgroundColor: Colors.white),
     initialRoute: '/',
     routes: {
       '/': (_) => const SplashScreen(),
